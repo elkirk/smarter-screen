@@ -1,2 +1,2 @@
 # smarter-screen
-Tech screen for Smarter Technology
+Tech screen for Smarter Technologies
