@@ -1,5 +1,11 @@
 package dispatcher
 
+const (
+	Standard = "STANDARD"
+	Special  = "SPECIAL"
+	Rejected = "REJECTED"
+)
+
 // Sort dispatches packages into stacks based on physical properties.
 //
 // Stacks:
@@ -18,10 +24,10 @@ func Sort(width, height, length, mass float64) string {
 	heavy := mass >= 20
 
 	if bulky && heavy {
-		return "REJECTED"
+		return Rejected
 	}
 	if bulky || heavy {
-		return "SPECIAL"
+		return Special
 	}
-	return "STANDARD"
+	return Standard
 }
