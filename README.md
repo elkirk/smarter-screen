@@ -16,7 +16,7 @@ go version
 Clone the repository and download dependencies:
 
 ```sh
-git clone https://github.com/your-username/smarter-screen.git
+git clone https://github.com/elkirk/smarter-screen
 cd smarter-screen
 go mod tidy
 ```
