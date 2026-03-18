@@ -4,7 +4,20 @@ const (
 	Standard = "STANDARD"
 	Special  = "SPECIAL"
 	Rejected = "REJECTED"
+
+	VolThreshold  = 1_000_000
+	DimThreshold  = 150
+	MassThreshold = 20
 )
+
+func isBulky(width, height, length float64) bool {
+	volume := width * height * length
+	return volume >= VolThreshold || width >= DimThreshold || height >= DimThreshold || length >= DimThreshold
+}
+
+func isHeavy(mass float64) bool {
+	return mass >= MassThreshold
+}
 
 // Sort dispatches packages into stacks based on physical properties.
 //
@@ -19,9 +32,8 @@ const (
 //
 // Units are cm for dimensions and kg for mass.
 func Sort(width, height, length, mass float64) string {
-	volume := width * height * length
-	bulky := volume >= 1_000_000 || width >= 150 || height >= 150 || length >= 150
-	heavy := mass >= 20
+	bulky := isBulky(width, height, length)
+	heavy := isHeavy(mass)
 
 	if bulky && heavy {
 		return Rejected
